@@ -25,7 +25,7 @@ class StaffResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Personal_details')
+                Forms\Components\Section::make('Personal details')
                 ->schema(
                     [
                         Forms\Components\TextInput::make('first_name')
