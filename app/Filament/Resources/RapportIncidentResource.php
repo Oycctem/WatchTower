@@ -19,6 +19,8 @@ class RapportIncidentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
+    protected static ?string $label = 'Incident report';
+
     protected static ?string $navigationGroup = 'Staff';
 
     public static function form(Form $form): Form
