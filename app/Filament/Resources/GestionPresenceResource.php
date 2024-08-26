@@ -19,6 +19,8 @@ class GestionPresenceResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-plus';
 
+    protected static ?string $label = 'Attendance management';
+
     protected static ?string $navigationGroup = 'Staff';
 
     public static function form(Form $form): Form
