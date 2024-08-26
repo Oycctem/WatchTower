@@ -19,6 +19,8 @@ class GestionCongeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-calendar-date-range';
 
+    protected static ?string $label = 'Leave management';
+
     protected static ?string $navigationGroup = 'Staff';
 
     public static function form(Form $form): Form
