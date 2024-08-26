@@ -26,22 +26,25 @@ class GestionAccesResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('staff_id')
-                    ->label('Nom agent')
+                    ->label('Agent\'s name')
                     ->options(function () {
                         return \App\Models\Staff::all()->pluck('full_name', 'id');
                     })
                     ->required()
                     ->columnSpan('full'),
                 Forms\Components\DatePicker::make('date_acces')
+                    ->label('Access date')
                     ->suffixIcon('heroicon-m-calendar-days')
                     ->native(false)
                     ->required(),
                 Forms\Components\TimePicker::make('heure_acces')
+                    ->label('Access time')
                     ->suffixIcon('heroicon-m-clock')
                     ->native(false)
                     ->required(),
 
                 Forms\Components\Select::make('type_acces')
+                    ->label('Access type')
                     ->options([
                         'entrée' => 'Entrée',
                         'sortie' => 'Sortie',
@@ -57,7 +60,7 @@ class GestionAccesResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nom_agent')
+                Tables\Columns\TextColumn::make('Agent')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('date_acces')
                     ->date()
