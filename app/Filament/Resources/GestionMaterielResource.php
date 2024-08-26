@@ -19,6 +19,8 @@ class GestionMaterielResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-wrench-screwdriver';
 
+    protected static ?string $label = 'Material management';
+
     protected static ?string $navigationGroup = 'Staff';
 
     public static function form(Form $form): Form
