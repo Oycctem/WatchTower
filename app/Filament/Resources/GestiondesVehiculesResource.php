@@ -19,6 +19,8 @@ class GestiondesVehiculesResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $label = 'Vehicle management';
+
     protected static ?string $navigationGroup = 'Staff';
 
     public static function form(Form $form): Form
