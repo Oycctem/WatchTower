@@ -19,6 +19,8 @@ class GestionAccesResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
 
+    protected static ?string $label = 'Access management';
+
     protected static ?string $navigationGroup = 'Staff';
 
     public static function form(Form $form): Form
