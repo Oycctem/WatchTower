@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\GestionPresenceResource\Pages;
-use App\Filament\Resources\GestionPresenceResource\RelationManagers;
 use App\Models\GestionPresence;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class GestionPresenceResource extends Resource
 {
@@ -27,24 +24,29 @@ class GestionPresenceResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('staff_id')
-                    ->label('Nom agent')
-                    ->options(function () {
-                        return \App\Models\Staff::all()->pluck('full_name', 'id');
-                    })
-                    ->required(),
-                Forms\Components\Select::make('statut_presence')
-                    ->options([
-                        'présent' => 'Présent',
-                        'absent' => 'Absent',
-                        'retard' => 'Retard',
-                    ])
-                    ->required(),
-                Forms\Components\DatePicker::make('date_presence')
-                    ->suffixIcon('heroicon-m-calendar-days')
-                    ->native(false)
-                    ->columnSpan('full')
-                    ->required(),
+                Forms\Components\Section::make('')
+                ->schema([
+                    Forms\Components\Select::make('staff_id')
+                        ->label('Nom agent')
+                        ->options(function () {
+                            return \App\Models\Staff::all()->pluck('full_name', 'id');
+                        })
+                        ->required()
+                        ->reactive()
+                        ->afterStateUpdated(fn (callable $set, $state) => $set('staff.full_name', \App\Models\Staff::find($state)?->full_name ?? '')),
+                    Forms\Components\Select::make('statut_presence')
+                        ->options([
+                            'présent' => 'Present',
+                            'absent' => 'Absent',
+                            'retard' => 'Late',
+                        ])
+                        ->required(),
+                    Forms\Components\DatePicker::make('date_presence')
+                        ->suffixIcon('heroicon-m-calendar-days')
+                        ->native(false)
+                        ->columnSpan('full')
+                        ->required(),
+                        ])->columns(2),
             ]);
     }
 
@@ -52,7 +54,7 @@ class GestionPresenceResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nom_agent')
+                Tables\Columns\TextColumn::make('staff.full_name') // Display the full name of the related staff
                     ->searchable(),
                 Tables\Columns\TextColumn::make('date_presence')
                     ->date()
