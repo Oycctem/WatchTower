@@ -30,21 +30,24 @@ class GestionCongeResource extends Resource
                 Forms\Components\Section::make('')
                 ->schema([
                     Forms\Components\Select::make('staff_id')
-                        ->label('Nom agent')
+                        ->label('Agents\' name')
                         ->options(function () {
                             return \App\Models\Staff::all()->pluck('full_name', 'id');
                         })
                         ->required()
                         ->columnSpan('full'),
                     Forms\Components\DatePicker::make('debut_conge')
+                        ->label('Begin in')
                         ->suffixIcon('heroicon-m-calendar-days')
                         ->native(false)
                         ->required(),
                     Forms\Components\DatePicker::make('fin_conge')
+                        ->label('End in')
                         ->suffixIcon('heroicon-m-calendar-days')
                         ->native(false)
                         ->required(),
                     Forms\Components\Textarea::make('raison_conge')
+                        ->label('Reason')
                         ->required()
                         ->columnSpanFull(),
                     ])->columns(2),
@@ -56,12 +59,14 @@ class GestionCongeResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('staff.full_name') // Change from nom_agent to staff.full_name
-                    ->label('Nom agent')
+                    ->label('Agents\' name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('debut_conge')
+                    ->label('Begin in')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('fin_conge')
+                    ->label('End in')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
