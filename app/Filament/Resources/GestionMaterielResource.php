@@ -30,16 +30,19 @@ class GestionMaterielResource extends Resource
                 Forms\Components\Section::make('')
                 ->schema([
                     Forms\Components\TextInput::make('id_equipement')
+                        ->label('Equipement id')
                         ->required()
                         ->maxLength(255),
                     Forms\Components\TextInput::make('nom_equipement')
+                        ->label('Equipement name')
                         ->required()
                         ->maxLength(255),
                     Forms\Components\Select::make('statut_equipement')
+                        ->label('Equipement status')
                         ->options([
-                            'en bon état' => 'In good condition',
-                            'en réparation' => 'Under maintenance',
-                            'hors service' => 'Out of service',
+                            'in good condition' => 'In good condition',
+                            'under maintenance' => 'Under maintenance',
+                            'out of service' => 'Out of service',
             
                         ])
                         ->columnSpan('full')
@@ -53,10 +56,13 @@ class GestionMaterielResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id_equipement')
+                    ->label('Equipement id')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nom_equipement')
+                    ->label('Equipement name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('statut_equipement'),
+                Tables\Columns\TextColumn::make('statut_equipement')
+                    ->label('Equipement status'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
