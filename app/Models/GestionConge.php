@@ -15,7 +15,7 @@ class GestionConge extends Model
 
     // The attributes that are mass assignable.
     protected $fillable = [
-        'nom_agent',
+        'staff_id',
         'debut_conge',
         'fin_conge',
         'raison_conge',

@@ -10,37 +10,17 @@ class GestionPresence extends Model
 {
     use HasFactory;
 
-    // The table associated with the model.
-    protected $table = 'gestion_presences'; // Adjust if your table name is different
+    protected $table = 'gestion_presences'; // Define the table name
 
-    // The attributes that are mass assignable.
     protected $fillable = [
-        'nom_agent',
+        'staff_id', // Update this to reflect the new foreign key
         'date_presence',
         'statut_presence',
     ];
 
-    // The attributes that should be cast to native types.
     protected $casts = [
         'date_presence' => 'date',
     ];
-
-    // The attributes that should be hidden for arrays.
-    protected $hidden = [
-        'created_at',
-        'updated_at',
-    ];
-
-    // Custom scope to handle soft deletes manually
-    public function scopeWithDeleted($query)
-    {
-        return $query->whereNull('deleted_at');
-    }
-
-    public function scopeOnlyTrashed($query)
-    {
-        return $query->whereNotNull('deleted_at');
-    }
 
     public function staff(): BelongsTo
     {
