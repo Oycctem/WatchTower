@@ -27,27 +27,31 @@ class RapportIncidentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('lieu_incident')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Select::make('gravite_incident')
-                    ->options([
-                        'mineur' => 'Mineur',
-                        'modéré' => 'Modéré',
-                        'majeur' => 'Majeur',
-                    ])
-                    ->required(),
-                Forms\Components\DatePicker::make('date_incident')
-                    ->suffixIcon('heroicon-m-calendar-days')
-                    ->native(false)
-                    ->required(),
-                Forms\Components\TimePicker::make('heure_incident')
-                    ->suffixIcon('heroicon-m-clock')
-                    ->native(false)
-                    ->required(),
-                Forms\Components\Textarea::make('description_incident')
-                    ->required()
-                    ->columnSpanFull(),
+                Forms\Components\Section::make('')
+                ->schema([
+                    Forms\Components\TextInput::make('lieu_incident')
+                        ->required()
+                        ->maxLength(255),
+                    Forms\Components\Select::make('gravite_incident')
+                        ->label('incident severity')
+                        ->options([
+                            'mineur' => 'Minor',
+                            'modéré' => 'Moderate',
+                            'majeur' => 'Major',
+                        ])
+                        ->required(),
+                    Forms\Components\DatePicker::make('date_incident')
+                        ->suffixIcon('heroicon-m-calendar-days')
+                        ->native(false)
+                        ->required(),
+                    Forms\Components\TimePicker::make('heure_incident')
+                        ->suffixIcon('heroicon-m-clock')
+                        ->native(false)
+                        ->required(),
+                    Forms\Components\Textarea::make('description_incident')
+                        ->required()
+                        ->columnSpanFull(),
+                        ])->columns(2),
             ]);
     }
 
