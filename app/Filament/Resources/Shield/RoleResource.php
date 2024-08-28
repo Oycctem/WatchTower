@@ -23,6 +23,7 @@ class RoleResource extends Resource implements HasShieldPermissions
 {
     protected static ?string $recordTitleAttribute = 'name';
     protected static $permissionsCollection;
+    
 
     protected static ?int $navigationSort = 2;
 
@@ -59,7 +60,7 @@ class RoleResource extends Resource implements HasShieldPermissions
                                     ->maxLength(255),
 
                                 ShieldSelectAllToggle::make('select_all')
-                                    ->onIcon('heroicon-s-shield-check')
+                                    ->onIcon('heroicon-o-shield-check')
                                     ->offIcon('heroicon-s-shield-exclamation')
                                     ->label(__('filament-shield::filament-shield.field.select_all.name'))
                                     ->helperText(fn (): HtmlString => new HtmlString(__('filament-shield::filament-shield.field.select_all.message')))
