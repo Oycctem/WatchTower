@@ -27,7 +27,7 @@ class GestionPresenceResource extends Resource
                 Forms\Components\Section::make('')
                 ->schema([
                     Forms\Components\Select::make('staff_id')
-                        ->label('Nom agent')
+                        ->label('Agent\'s name')
                         ->options(function () {
                             return \App\Models\Staff::all()->pluck('full_name', 'id');
                         })
@@ -35,6 +35,7 @@ class GestionPresenceResource extends Resource
                         ->reactive()
                         ->afterStateUpdated(fn (callable $set, $state) => $set('staff.full_name', \App\Models\Staff::find($state)?->full_name ?? '')),
                     Forms\Components\Select::make('statut_presence')
+                        ->label('Status')
                         ->options([
                             'présent' => 'Present',
                             'absent' => 'Absent',
@@ -42,6 +43,7 @@ class GestionPresenceResource extends Resource
                         ])
                         ->required(),
                     Forms\Components\DatePicker::make('date_presence')
+                        ->label('Date')
                         ->suffixIcon('heroicon-m-calendar-days')
                         ->native(false)
                         ->columnSpan('full')
@@ -54,12 +56,15 @@ class GestionPresenceResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('staff.full_name') // Display the full name of the related staff
+                Tables\Columns\TextColumn::make('staff.full_name')
+                    ->label('Full name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('date_presence')
+                    ->label('Date')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('statut_presence'),
+                Tables\Columns\TextColumn::make('statut_presence')
+                    ->label('Status'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
