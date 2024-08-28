@@ -30,6 +30,7 @@ class RapportIncidentResource extends Resource
                 Forms\Components\Section::make('')
                 ->schema([
                     Forms\Components\TextInput::make('lieu_incident')
+                        ->label('Location')
                         ->required()
                         ->maxLength(255),
                     Forms\Components\Select::make('gravite_incident')
@@ -41,14 +42,17 @@ class RapportIncidentResource extends Resource
                         ])
                         ->required(),
                     Forms\Components\DatePicker::make('date_incident')
+                        ->label('Date of the incident')
                         ->suffixIcon('heroicon-m-calendar-days')
                         ->native(false)
                         ->required(),
                     Forms\Components\TimePicker::make('heure_incident')
+                        ->label('Time of the incident')
                         ->suffixIcon('heroicon-m-clock')
                         ->native(false)
                         ->required(),
                     Forms\Components\Textarea::make('description_incident')
+                        ->label('Description of the incident')
                         ->required()
                         ->columnSpanFull(),
                         ])->columns(2),
@@ -60,14 +64,18 @@ class RapportIncidentResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('date_incident')
+                    ->label('Date of the incident')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('heure_incident')
+                    ->label('Time of the incident')
                     ->Time()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('lieu_incident')
+                    ->label('Location of the incident')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('gravite_incident'),
+                Tables\Columns\TextColumn::make('gravite_incident')
+                    ->label('Severity of the incident'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
