@@ -17,4 +17,10 @@ class EditStaff extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    protected function getRedirectUrl(): string
+    {
+        // Redirect back to the index page after creation
+        return $this->getResource()::getUrl('index');
+    }
 }

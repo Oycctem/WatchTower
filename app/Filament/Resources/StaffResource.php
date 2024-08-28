@@ -30,7 +30,7 @@ class StaffResource extends Resource
                 Forms\Components\Section::make('Personal details')
                 ->schema(
                     [
-                        Forms\Components\TextInput::make('first_name')
+                    Forms\Components\TextInput::make('first_name')
                         ->required()
                         ->maxLength(100),
                     Forms\Components\TextInput::make('last_name')
@@ -72,30 +72,34 @@ class StaffResource extends Resource
                     ->required()
                     ->maxLength(100),
                     Forms\Components\TextInput::make('Emergency_Contact_Phone')
-                    ->tel()
+                    ->numeric()
                     ->maxLength(15),
                 ])->columns(2),
-                Forms\Components\TextInput::make('picture')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('age')
-                    ->numeric(),
-                Forms\Components\Select::make('sexe')
-                    ->options([
-                        'male' => 'Male',
-                        'female' => 'Female',
-                        'other' => 'Other',
-                    ])
-                    ->required(),
-                Forms\Components\TextInput::make('clothes_size')
-                    ->maxLength(10),
-                Forms\Components\TextInput::make('boots_size')
-                    ->maxLength(5),
-                Forms\Components\TextInput::make('badge_id')
-                    ->required()
-                    ->maxLength(50),
-                Forms\Components\TextInput::make('driver_license')
-                    ->maxLength(50),
-            ])->columns(2);
+
+                Forms\Components\Section::make('Additional Details')
+                ->schema([
+                    Forms\Components\TextInput::make('picture')
+                        ->maxLength(255),
+                    Forms\Components\TextInput::make('age')
+                        ->numeric(),
+                    Forms\Components\Select::make('sexe')
+                        ->options([
+                            'male' => 'Male',
+                            'female' => 'Female',
+                            'other' => 'Other',
+                        ])
+                        ->required(),
+                    Forms\Components\TextInput::make('clothes_size')
+                        ->maxLength(10),
+                    Forms\Components\TextInput::make('boots_size')
+                        ->maxLength(5),
+                    Forms\Components\TextInput::make('badge_id')
+                        ->required()
+                        ->maxLength(50),
+                    Forms\Components\TextInput::make('driver_license')
+                        ->maxLength(50),
+                        ])->columns(2),
+                        ]);
     }
 
     public static function table(Table $table): Table
@@ -119,8 +123,7 @@ class StaffResource extends Resource
                 Tables\Columns\TextColumn::make('marital_status'),
                 Tables\Columns\TextColumn::make('phone_number_one')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('EmergencyContactPhone ')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('EmergencyContactPhone '),
                 Tables\Columns\TextColumn::make('picture')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('age')
