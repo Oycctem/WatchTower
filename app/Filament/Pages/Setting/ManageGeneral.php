@@ -22,7 +22,7 @@ class ManageGeneral extends SettingsPage
     protected static string $settings = GeneralSettings::class;
 
     protected static ?int $navigationSort = 99;
-    protected static ?string $navigationIcon = 'fluentui-settings-20';
+    protected static ?string $navigationIcon = 'heroicon-o-cog-8-tooth';
 
     /**
      * @var array<string, mixed> | null
@@ -60,50 +60,6 @@ class ManageGeneral extends SettingsPage
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Site')
-                    ->label(fn () => __('page.general_settings.sections.site'))
-                    ->description(fn () => __('page.general_settings.sections.site.description'))
-                    ->icon('fluentui-web-asset-24-o')
-                    ->schema([
-                        Forms\Components\Grid::make()->schema([
-                            Forms\Components\TextInput::make('brand_name')
-                                ->label(fn () => __('page.general_settings.fields.brand_name'))
-                                ->required(),
-                            Forms\Components\Select::make('site_active')
-                                ->label(fn () => __('page.general_settings.fields.site_active'))
-                                ->options([
-                                    0 => "Not Active",
-                                    1 => "Active",
-                                ])
-                                ->native(false)
-                                ->required(),
-                        ]),
-                        Forms\Components\Grid::make()->schema([
-                            Forms\Components\Grid::make()->schema([
-                                Forms\Components\TextInput::make('brand_logoHeight')
-                                    ->label(fn () => __('page.general_settings.fields.brand_logoHeight'))
-                                    ->required()
-                                    ->columnSpan(2),
-                                Forms\Components\FileUpload::make('brand_logo')
-                                    ->label(fn () => __('page.general_settings.fields.brand_logo'))
-                                    ->image()
-                                    ->directory('sites')
-                                    ->visibility('public')
-                                    ->moveFiles()
-                                    ->required()
-                                    ->columnSpan(2),
-                            ])
-                                ->columnSpan(2),
-                            Forms\Components\FileUpload::make('site_favicon')
-                                ->label(fn () => __('page.general_settings.fields.site_favicon'))
-                                ->image()
-                                ->directory('sites')
-                                ->visibility('public')
-                                ->moveFiles()
-                                ->acceptedFileTypes(['image/x-icon', 'image/vnd.microsoft.icon'])
-                                ->required(),
-                        ])->columns(4),
-                    ]),
                 Forms\Components\Tabs::make('Tabs')
                     ->tabs([
                         Forms\Components\Tabs\Tab::make('Color Palette')
