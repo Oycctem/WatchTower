@@ -17,7 +17,7 @@ class GestiondesVehiculesResource extends Resource
 {
     protected static ?string $model = GestiondesVehicules::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-truck';
 
     protected static ?string $label = 'Vehicle management';
 
