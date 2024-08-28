@@ -27,21 +27,24 @@ class GestionMaterielResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('id_equipement')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('nom_equipement')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Select::make('statut_equipement')
-                    ->options([
-                        'en bon état' => 'En bon état',
-                        'en réparation' => 'En réparation',
-                        'hors service' => 'Hors service',
-         
-                    ])
-                    ->columnSpan('full')
-                    ->required(),
+                Forms\Components\Section::make('')
+                ->schema([
+                    Forms\Components\TextInput::make('id_equipement')
+                        ->required()
+                        ->maxLength(255),
+                    Forms\Components\TextInput::make('nom_equipement')
+                        ->required()
+                        ->maxLength(255),
+                    Forms\Components\Select::make('statut_equipement')
+                        ->options([
+                            'en bon état' => 'In good condition',
+                            'en réparation' => 'Under maintenance',
+                            'hors service' => 'Out of service',
+            
+                        ])
+                        ->columnSpan('full')
+                        ->required(),
+                        ])->columns(2),
             ]);
     }
 
