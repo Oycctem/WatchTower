@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Filament\Models\Contracts\FilamentUser;
+use Spatie\Image\Image;
+use Spatie\Image\Manipulations;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
 use Filament\Panel;
@@ -90,7 +92,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Has
     public function registerMediaConversions(Media|null $media = null): void
     {
         $this->addMediaConversion('thumb')
-            ->fit(Fit::Contain, 300, 300)
+            ->fit(Manipulations::FIT_CONTAIN, 300, 300)
             ->nonQueued();
     }
 }
