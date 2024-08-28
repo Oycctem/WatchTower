@@ -27,17 +27,20 @@ class GestiondesVehiculesResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('model')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Select::make('status')
-                    ->options([
-                        'available' => 'Available',
-                        'unavailable' => 'Unavailable',
-                        'maintenance' => 'Maintenance',
-                        'sold' => 'Sold',
-                    ])
-                    ->required(),
+                Forms\Components\Section::make('')
+                ->schema([
+                    Forms\Components\TextInput::make('model')
+                        ->required()
+                        ->maxLength(255),
+                    Forms\Components\Select::make('status')
+                        ->options([
+                            'available' => 'Available',
+                            'unavailable' => 'Unavailable',
+                            'maintenance' => 'Maintenance',
+                            'sold' => 'Sold',
+                        ])
+                        ->required(),
+                    ])->columns(2),
             ]);
     }
 
