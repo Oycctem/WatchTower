@@ -27,17 +27,20 @@ class CitiesResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('code')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Select::make('region_id')
-                    ->options(function () {
-                        return \App\Models\region::all()->pluck('name', 'id');
-                    })
-                    ->required(),
+                Forms\Components\Section::make('')
+                ->schema([
+                    Forms\Components\TextInput::make('name')
+                        ->required()
+                        ->maxLength(255),
+                    Forms\Components\TextInput::make('code')
+                        ->required()
+                        ->maxLength(255),
+                    Forms\Components\Select::make('region_id')
+                        ->options(function () {
+                            return \App\Models\region::all()->pluck('name', 'id');
+                        })
+                        ->required(),
+                    ])->columns(2),
             ]);
     }
 

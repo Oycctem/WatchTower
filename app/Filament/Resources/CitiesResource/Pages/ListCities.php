@@ -13,7 +13,13 @@ class ListCities extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+            ->label('New'),
         ];
+    }
+
+    public function getTitle(): string
+    {
+        return 'Manage Cities'; // Customize the title as needed
     }
 }
