@@ -27,24 +27,27 @@ class GestionCongeResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('staff_id')
-                    ->label('Nom agent')
-                    ->options(function () {
-                        return \App\Models\Staff::all()->pluck('full_name', 'id');
-                    })
-                    ->required()
-                    ->columnSpan('full'),
-                Forms\Components\DatePicker::make('debut_conge')
-                    ->suffixIcon('heroicon-m-calendar-days')
-                    ->native(false)
-                    ->required(),
-                Forms\Components\DatePicker::make('fin_conge')
-                    ->suffixIcon('heroicon-m-calendar-days')
-                    ->native(false)
-                    ->required(),
-                Forms\Components\Textarea::make('raison_conge')
-                    ->required()
-                    ->columnSpanFull(),
+                Forms\Components\Section::make('')
+                ->schema([
+                    Forms\Components\Select::make('staff_id')
+                        ->label('Nom agent')
+                        ->options(function () {
+                            return \App\Models\Staff::all()->pluck('full_name', 'id');
+                        })
+                        ->required()
+                        ->columnSpan('full'),
+                    Forms\Components\DatePicker::make('debut_conge')
+                        ->suffixIcon('heroicon-m-calendar-days')
+                        ->native(false)
+                        ->required(),
+                    Forms\Components\DatePicker::make('fin_conge')
+                        ->suffixIcon('heroicon-m-calendar-days')
+                        ->native(false)
+                        ->required(),
+                    Forms\Components\Textarea::make('raison_conge')
+                        ->required()
+                        ->columnSpanFull(),
+                    ])->columns(2),
             ]);
     }
 
@@ -52,7 +55,8 @@ class GestionCongeResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nom_agent')
+                Tables\Columns\TextColumn::make('staff.full_name') // Change from nom_agent to staff.full_name
+                    ->label('Nom agent')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('debut_conge')
                     ->date()
