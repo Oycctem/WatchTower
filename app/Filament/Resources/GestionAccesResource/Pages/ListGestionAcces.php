@@ -13,7 +13,13 @@ class ListGestionAcces extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+            ->label('New'),
         ];
+    }
+
+    public function getTitle(): string
+    {
+        return 'Manage Access'; // Customize the title as needed
     }
 }

@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\GestionAccesResource\Pages;
-use App\Filament\Resources\GestionAccesResource\RelationManagers;
 use App\Models\GestionAcces;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class GestionAccesResource extends Resource
 {
@@ -27,34 +24,36 @@ class GestionAccesResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('staff_id')
-                    ->label('Agent\'s name')
-                    ->options(function () {
-                        return \App\Models\Staff::all()->pluck('full_name', 'id');
-                    })
-                    ->required()
-                    ->columnSpan('full'),
-                Forms\Components\DatePicker::make('date_acces')
-                    ->label('Access date')
-                    ->suffixIcon('heroicon-m-calendar-days')
-                    ->native(false)
-                    ->required(),
-                Forms\Components\TimePicker::make('heure_acces')
-                    ->label('Access time')
-                    ->suffixIcon('heroicon-m-clock')
-                    ->native(false)
-                    ->required(),
-
-                Forms\Components\Select::make('type_acces')
-                    ->label('Access type')
-                    ->options([
-                        'entrée' => 'Entrée',
-                        'sortie' => 'Sortie',
-                    ])
-                    ->required(),
-                Forms\Components\TextInput::make('lieu_acces')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Section::make('')
+                ->schema([
+                    Forms\Components\Select::make('staff_id')
+                        ->label('Agent\'s name')
+                        ->options(function () {
+                            return \App\Models\Staff::all()->pluck('full_name', 'id');
+                        })
+                        ->required()
+                        ->columnSpan('full'),
+                    Forms\Components\DatePicker::make('date_acces')
+                        ->label('Access date')
+                        ->suffixIcon('heroicon-m-calendar-days')
+                        ->native(false)
+                        ->required(),
+                    Forms\Components\TimePicker::make('heure_acces')
+                        ->label('Access time')
+                        ->suffixIcon('heroicon-m-clock')
+                        ->native(false)
+                        ->required(),
+                    Forms\Components\Select::make('type_acces')
+                        ->label('Access type')
+                        ->options([
+                            'entrée' => 'Entrée',
+                            'sortie' => 'Sortie',
+                        ])
+                        ->required(),
+                    Forms\Components\TextInput::make('lieu_acces')
+                        ->required()
+                        ->maxLength(255),
+                        ])->columns(2),
             ]);
     }
 
@@ -62,15 +61,21 @@ class GestionAccesResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('Agent')
+                Tables\Columns\TextColumn::make('staff.full_name') // Correct column to show staff's full name
+                    ->label('Agent')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('date_acces')
+                    ->label('Access Date')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('heure_acces'),
+                Tables\Columns\TextColumn::make('heure_acces')
+                    ->label('Access Time')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('lieu_acces')
+                    ->label('Access Place')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('type_acces'),
+                Tables\Columns\TextColumn::make('type_acces')
+                    ->label('Access Type'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -81,7 +86,7 @@ class GestionAccesResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                // Define any filters if needed
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -98,7 +103,7 @@ class GestionAccesResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            // Define any relations if needed
         ];
     }
 
