@@ -58,7 +58,7 @@ class GestionCongeResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('staff.full_name') // Change from nom_agent to staff.full_name
+                Tables\Columns\TextColumn::make('staff.full_name')
                     ->label('Agents\' name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('debut_conge')
