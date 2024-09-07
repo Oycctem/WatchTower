@@ -35,7 +35,7 @@ class AdminPanelProvider extends PanelProvider
             ->passwordReset(RequestPasswordReset::class)
             ->emailVerification(EmailVerification::class)
             ->favicon(asset('images/logo1.png'))
-            ->brandName('WatchTower')
+            ->brandName('mamoun')
             ->brandLogo(asset('images/logo4.png'))
             ->colors(fn (GeneralSettings $settings) => $settings->site_theme)
             ->databaseNotifications()->databaseNotificationsPolling('30s')
