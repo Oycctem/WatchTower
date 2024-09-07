@@ -9,9 +9,10 @@ class RapportIncident extends Model
 {
     use HasFactory;
 
+    // The table associated with the model.
+    protected $table = 'rapport_incidents'; // Adjust if your table name is different
 
-    protected $table = 'rapport_incidents'; 
-
+    // The attributes that are mass assignable.
     protected $fillable = [
         'date_incident',
         'heure_incident',
@@ -20,11 +21,13 @@ class RapportIncident extends Model
         'gravite_incident',
     ];
 
+    // The attributes that should be cast to native types.
     protected $casts = [
         'date_incident' => 'date',
         'heure_incident' => 'datetime:H:i:s',
     ];
 
+    // Custom scope to handle soft deletes manually
     public function scopeWithDeleted($query)
     {
         return $query->whereNull('deleted_at');

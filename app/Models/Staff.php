@@ -72,4 +72,14 @@ class Staff extends Model implements FilamentUser
         return $this->hasRole('test');
     }
 
+    public function city()
+    {
+        return $this->belongsTo(Cities::class);
+    }
+
+    public function etablissement()
+    {
+        return $this->belongsTo(Etablissement::class, 'etablissement_id');
+    }
+
 }
