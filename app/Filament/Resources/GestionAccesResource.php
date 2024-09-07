@@ -65,11 +65,11 @@ class GestionAccesResource extends Resource
                     ->label('Agent')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('date_acces')
-                    ->label('Access Date')
+                    ->label('Date Acces')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('heure_acces')
-                    ->label('Access Time')
+                    ->label('Heure Acces')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('lieu_acces')
                     ->label('Access Place')
